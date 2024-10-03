@@ -1,0 +1,4 @@
+torch==2.0.1+cu118
+numpy==1.24.4
+mlxtend==0.23.1
+matplotlib==3.7.2
