@@ -32,7 +32,7 @@ input_data = InputData(
 app = FastAPI(title='Concrete Compress Strength Prediction API')
 
 # 加载训练好的机器学习模型文件.
-model_path = os.path.join("../model", "RF_model.pkl")
+model_path = os.path.join("../model/", "RF_model.pkl")
 with open(model_path, 'rb') as f:
     model = pickle.load(f)
 
