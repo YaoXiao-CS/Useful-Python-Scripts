@@ -32,7 +32,8 @@ input_data = InputData(
 app = FastAPI(title='Concrete Compress Strength Prediction API')
 
 # 加载训练好的机器学习模型文件.
-model_path = os.path.join("../model/", "RF_model.pkl")
+# note: 这里是相对路径，注意执行python main.py时所处路径！！
+model_path = os.path.join("model", "RF_model.pkl")
 with open(model_path, 'rb') as f:
     model = pickle.load(f)
 
@@ -46,3 +47,7 @@ def predict(data:InputData):
 
     # 预测结果返回.
     return {"Predicted_Compress_Strength":prediction[0]}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=80, log_level="info")
