@@ -16,16 +16,16 @@ class InputData(BaseModel):
 
 # 数据输入示例.
 """
-input_data = InputData(
-    Cement=300.0,
-    Blast_Furnace_Slag=100.0,
-    Fly_Ash=50.0,
-    Water=200.0,
-    Superplasticizer=5.0,
-    Coarse_Aggregate=1000.0,
-    Fine_Aggregate=500.0,
-    Age=28
-)
+{
+   "Cement":300.0,
+    "Blast_Furnace_Slag":100.0,
+    "Fly_Ash":50.0,
+    "Water":200.0,
+    "Superplasticizer":5.0,
+    "Coarse_Aggregate":1000.0,
+    "Fine_Aggregate":500.0,
+    "Age":28
+}
 """
 
 # 初始化一个FastAPI app.
@@ -40,7 +40,9 @@ with open(model_path, 'rb') as f:
 @app.post("/predict")
 def predict(data:InputData):
     # 用于预测的输入数据.
-    input_features = [[data.Cement, data.Blast_Furnace_Slag, data.Fly_Ash, data.Water, data.Superplasticizer, data.Coarse_Aggregate, data.Fine_Aggregate, data.Age]]
+    input_features = [[data.Cement, data.Blast_Furnace_Slag, data.Fly_Ash, 
+                       data.Water, data.Superplasticizer, data.Coarse_Aggregate, 
+                       data.Fine_Aggregate, data.Age]]
 
     # 模型预测.
     prediction = model.predict(input_features)
